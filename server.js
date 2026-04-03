@@ -182,6 +182,9 @@ app.get("/", (req, res) => {
 app.get("/checkout", (req, res) => {
   res.sendFile(path.join(__dirname, "checkout.html"));
 });
+app.get("/wishlist", (req, res) => {
+  res.sendFile(path.join(__dirname, "wishlist.html"));
+});
 
 /* ---------------- START SERVER ---------------- */
 async function start() {

@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000"; // change if needed
+const API_BASE = "";
 
 function getToken() {
   return localStorage.getItem("token") || "";
@@ -62,9 +62,11 @@ function showToast(msg) {
 
   toast.textContent = msg;
   toast.hidden = false;
+  toast.classList.add("is-show");
 
   clearTimeout(showToast._t);
   showToast._t = setTimeout(() => {
+    toast.classList.remove("is-show");
     toast.hidden = true;
   }, 2600);
 }

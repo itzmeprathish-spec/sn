@@ -33,7 +33,13 @@ function renderCart() {
     const row = document.createElement("div");
     row.className = "lineRow";
     row.innerHTML = `
-      <span>${item.name || "Product"} x ${item.quantity || 1}</span>
+      <span>${item.name || "Product"}</span>
+      <div class="qtyRow">
+        <button type="button" data-cart-action="dec" data-cart-id="${item.productId}">-</button>
+        <strong>${item.quantity || 1}</strong>
+        <button type="button" data-cart-action="inc" data-cart-id="${item.productId}">+</button>
+        <button type="button" data-cart-action="remove" data-cart-id="${item.productId}">x</button>
+      </div>
       <strong>${formatINR((item.price || 0) * (item.quantity || 1))}</strong>
     `;
     cartItems.appendChild(row);
@@ -42,9 +48,11 @@ function renderCart() {
 
 window.addToCart = async function addToCart(productId, quantity) {
   try {
-    const product = await apiFetch(`/api/products`);
-    const allProducts = Array.isArray(product) ? product : (product.products || []);
-    const selected = allProducts.find((p) => String(p._id || p.id) === String(productId));
+    let selected = window.getProductById ? window.getProductById(productId) : null;
+    if (!selected) {
+      const cached = JSON.parse(localStorage.getItem("catalogCache") || "[]");
+      selected = cached.find((p) => String(p.id || p._id) === String(productId));
+    }
     if (!selected) throw new Error("Product not found");
 
     const items = getCart();
@@ -74,12 +82,28 @@ window.addEventListener("load", () => {
   const closeCartBtn = document.getElementById("closeCartBtn");
   const cartOverlay = document.getElementById("cartOverlay");
   const goToCheckoutBtn = document.getElementById("goToCheckoutBtn");
+  const cartItems = document.getElementById("cartItems");
 
   openCartBtn?.addEventListener("click", () => cartDrawer?.classList.add("is-open"));
   closeCartBtn?.addEventListener("click", () => cartDrawer?.classList.remove("is-open"));
   cartOverlay?.addEventListener("click", () => cartDrawer?.classList.remove("is-open"));
   goToCheckoutBtn?.addEventListener("click", () => {
     window.location.href = "/checkout";
+  });
+  cartItems?.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-cart-action]");
+    if (!btn) return;
+    const action = btn.getAttribute("data-cart-action");
+    const id = btn.getAttribute("data-cart-id");
+    const items = getCart();
+    const idx = items.findIndex((i) => String(i.productId) === String(id));
+    if (idx < 0) return;
+
+    if (action === "inc") items[idx].quantity = Number(items[idx].quantity || 1) + 1;
+    if (action === "dec") items[idx].quantity = Math.max(1, Number(items[idx].quantity || 1) - 1);
+    if (action === "remove") items.splice(idx, 1);
+    setCart(items);
+    renderCart();
   });
 
   renderCart();
