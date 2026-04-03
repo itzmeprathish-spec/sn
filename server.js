@@ -63,20 +63,20 @@ function clientErrorStatus(err) {
 /* ---------------- MODELS ---------------- */
 const { Schema } = mongoose;
 
-const User = mongoose.model("User", new Schema({
+const User = mongoose.models.User || mongoose.model("User", new Schema({
   name: String,
   email: { type: String, unique: true },
   passwordHash: String
 }));
 
-const Product = mongoose.model("Product", new Schema({
+const Product = mongoose.models.Product || mongoose.model("Product", new Schema({
   category: String,
   name: String,
   price: Number,
   imageUrl: String
 }));
 
-const Cart = mongoose.model("Cart", new Schema({
+const Cart = mongoose.models.Cart || mongoose.model("Cart", new Schema({
   userId: Schema.Types.ObjectId,
   items: [{ productId: Schema.Types.ObjectId, quantity: Number }]
 }));
@@ -194,4 +194,9 @@ async function start() {
   });
 }
 
-start();
+// For serverless platforms (e.g. Vercel), export app and do not call listen().
+if (require.main === module) {
+  start();
+}
+
+module.exports = app;
