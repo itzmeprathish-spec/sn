@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clothing Store</title>
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="brand" href="/">
+          <span class="brand__mark">C</span>
+          <span class="brand__text">Clothify</span>
+        </a>
+
+        <nav class="nav">
+          <a class="nav__link" href="/">Home</a>
+          <button class="nav__link nav__button" data-category="Men" type="button">Men</button>
+          <button class="nav__link nav__button" data-category="Women" type="button">Women</button>
+          <button class="nav__link nav__button" data-category="Kids" type="button">Kids</button>
+        </nav>
+
+        <div class="topbar__actions">
+          <button class="cartButton" id="openCartBtn" type="button">
+            Cart
+            <span class="cartButton__badge" id="cartCountBadge">0</span>
+          </button>
+          <button class="authButton" id="authButton" type="button">Sign in</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__bg" id="heroBg"></div>
+      <div class="hero__content">
+        <h1>Fresh fits, fast checkout.</h1>
+        <p>Discover trending shirts, jeans, dresses, and everyday favorites.</p>
+        <div class="hero__ctaRow">
+          <button class="primaryBtn" id="shopNowBtn">Shop Collection</button>
+          <a class="secondaryBtn" href="/checkout">Checkout</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN -->
+    <main class="container">
+      <div class="filters">
+        <button class="filterChip is-active" data-category="All">All</button>
+        <button class="filterChip" data-category="Men">Men</button>
+        <button class="filterChip" data-category="Women">Women</button>
+        <button class="filterChip" data-category="Kids">Kids</button>
+      </div>
+
+      <div class="productGrid" id="productGrid"></div>
+
+      <div class="emptyState" id="emptyState" hidden>
+        No products found. Try another category.
+      </div>
+    </main>
+
+    <!-- CART DRAWER -->
+    <aside class="drawer" id="cartDrawer">
+      <div class="drawer__overlay" id="cartOverlay"></div>
+
+      <div class="drawer__panel">
+        <div class="drawer__header">
+          <h2>Your Cart</h2>
+          <button id="closeCartBtn">✕</button>
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="drawer__footer">
+          <strong id="cartTotalStrong">₹0</strong>
+          <button id="goToCheckoutBtn">Checkout</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- AUTH MODAL -->
+    <div class="modal" id="authModal">
+      <div class="modal__overlay" id="authOverlay"></div>
+
+      <div class="modal__panel">
+        <h2 id="authModalTitle">Sign in</h2>
+
+        <form id="loginForm">
+          <input id="loginEmail" type="email" placeholder="Email" required />
+          <input id="loginPassword" type="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+          <div id="loginError"></div>
+        </form>
+      </div>
+    </div>
+
+    <script src="./api.js"></script>
+    <script src="./auth-ui.js"></script>
+    <script src="./cart-ui.js"></script>
+    <script src="./home.js"></script>
+
+  </body>
+</html>
