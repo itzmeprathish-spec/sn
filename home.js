@@ -103,12 +103,12 @@ function normalizeCategory(raw) {
 
 function fallbackProducts() {
   return [
-    { id: "m1", name: "Men Regular Fit Shirt", price: 1299, category: "Men", rating: 4.4, imageUrl: "https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=900&auto=format&fit=crop" },
-    { id: "m2", name: "Men Casual Jacket", price: 2499, category: "Men", rating: 4.6, imageUrl: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=900&auto=format&fit=crop" },
-    { id: "w1", name: "Women Elegant Dress", price: 1899, category: "Women", rating: 4.5, imageUrl: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=900&auto=format&fit=crop" },
-    { id: "w2", name: "Women Oversized Hoodie", price: 1599, category: "Women", rating: 4.3, imageUrl: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=900&auto=format&fit=crop" },
-    { id: "k1", name: "Kids Printed Tee", price: 699, category: "Kids", rating: 4.2, imageUrl: "https://images.unsplash.com/photo-1519238367310-5e70f7b8de0b?q=80&w=900&auto=format&fit=crop" },
-    { id: "k2", name: "Kids Party Dress", price: 999, category: "Kids", rating: 4.4, imageUrl: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?q=80&w=900&auto=format&fit=crop" }
+    { id: "m1", name: "Men Regular Fit Shirt", price: 1299, category: "Men", rating: 4.4, imageUrl: "https://images.unsplash.com/photo-1520975919018-bbb2c29e3a2a?q=80&w=1200&auto=format&fit=crop" },
+    { id: "m2", name: "Men Casual Jacket", price: 2499, category: "Men", rating: 4.6, imageUrl: "https://images.unsplash.com/photo-1520975661595-6453be3f7070?q=80&w=1200&auto=format&fit=crop" },
+    { id: "w1", name: "Women Elegant Dress", price: 1899, category: "Women", rating: 4.5, imageUrl: "https://images.unsplash.com/photo-1520975682038-8d5b7e84f651?q=80&w=1200&auto=format&fit=crop" },
+    { id: "w2", name: "Women Oversized Hoodie", price: 1599, category: "Women", rating: 4.3, imageUrl: "https://images.unsplash.com/photo-1520975681158-80d1c0f5f4c7?q=80&w=1200&auto=format&fit=crop" },
+    { id: "k1", name: "Kids Printed Tee", price: 699, category: "Kids", rating: 4.2, imageUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop" },
+    { id: "k2", name: "Kids Party Dress", price: 999, category: "Kids", rating: 4.4, imageUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop" }
   ];
 }
 

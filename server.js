@@ -175,15 +175,17 @@ app.get("/api/health", async (req, res) => {
 });
 
 /* ---------------- STATIC ---------------- */
+const PUBLIC_DIR = path.join(__dirname, "public");
+app.use(express.static(PUBLIC_DIR));
 app.use(express.static(__dirname));
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(PUBLIC_DIR, "index.html"));
 });
 app.get("/checkout", (req, res) => {
-  res.sendFile(path.join(__dirname, "checkout.html"));
+  res.sendFile(path.join(PUBLIC_DIR, "checkout.html"));
 });
 app.get("/wishlist", (req, res) => {
-  res.sendFile(path.join(__dirname, "wishlist.html"));
+  res.sendFile(path.join(PUBLIC_DIR, "wishlist.html"));
 });
 
 /* ---------------- START SERVER ---------------- */
