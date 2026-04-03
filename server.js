@@ -176,6 +176,9 @@ app.get("/api/health", async (req, res) => {
 
 /* ---------------- STATIC ---------------- */
 app.use(express.static(__dirname));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 app.get("/checkout", (req, res) => {
   res.sendFile(path.join(__dirname, "checkout.html"));
 });
